@@ -36,6 +36,8 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+
+                                <small class="text-muted">Valid domains: estracta.com, e-stracta.com</small>
                             </div>
                         </div>
 

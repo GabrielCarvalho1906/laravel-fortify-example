@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ReprocessController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/reprocessamento', [ReprocessController::class, 'showForm']);
+Route::post('/reprocessamento', [ReprocessController::class, 'processCommand']);
 
 Route::view('/home', 'home')->middleware(['auth', 'verified']);
 Route::view('/profile/edit', 'profile.edit')->middleware('auth');
 Route::view('/profile/password', 'profile.password')->middleware('auth');
+Route::get('/zabbix/card', 'App\Http\Controllers\ZabbixController@showCard')->name('zabbix.card');
+Route::get('/honeybadger/card', 'App\Http\Controllers\HoneybadgerController@index')->name('honeybadger.card');
+

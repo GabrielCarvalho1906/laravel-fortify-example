@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
+use App\Rules\ValidEmailDomain;
+
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -27,6 +29,8 @@ class CreateNewUser implements CreatesNewUsers
                 'string',
                 'email',
                 'max:255',
+                new ValidEmailDomain,
+
                 Rule::unique(User::class),
             ],
             'password' => $this->passwordRules(),
